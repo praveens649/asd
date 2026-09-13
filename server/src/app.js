@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth.route.js";
 import { errorHandler } from "./middleware/error.middleware.js";
 import { authenticate } from "./middleware/auth.middleware.js";
 import projectRoutes from "./routes/project.route.js";
+import taskRoutes from "./routes/task.route.js";
 const app = express();
 
 // Security middleware
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/tasks", taskRoutes);
 // Health check
 app.get("/api/health", (req, res) => {
   res.status(200).json({
