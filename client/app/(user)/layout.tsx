@@ -6,10 +6,18 @@ import Link from "next/link";
 import { getToken, getUser, logout } from "@/lib/auth";
 import { User } from "@/lib/types";
 import { api } from "@/lib/api";
+import {
+  LayoutDashboard,
+  FolderKanban,
+  LogOut,
+  Menu,
+  X,
+  User as UserIcon,
+} from "lucide-react";
 
 const navItems = [
-  { name: "Dashboard", href: "/dashboard" },
-  { name: "Projects", href: "/projects" },
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Projects", href: "/projects", icon: FolderKanban },
 ];
 
 export default function ProtectedLayout({
@@ -61,7 +69,7 @@ export default function ProtectedLayout({
 
   if (checkingAuth) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-slate-400">
+      <div className="flex min-h-screen items-center justify-center bg-background text-muted-foreground">
         Checking authentication...
       </div>
     );
@@ -75,28 +83,33 @@ export default function ProtectedLayout({
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      <header className="border-b border-slate-800 bg-slate-900 sticky top-0 z-30">
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="border-b border-border bg-card/95 backdrop-blur-md sticky top-0 z-30">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           {/* Left: Brand + Desktop Navigation */}
           <div className="flex items-center gap-8">
-            <Link href="/dashboard" className="text-lg font-bold text-white tracking-tight">
-              Project Management
+            <Link href="/dashboard" className="flex items-center gap-2.5 text-lg font-bold text-foreground tracking-tight hover:opacity-90 transition">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary">
+                <FolderKanban className="h-5 w-5" />
+              </div>
+              <span>Project Management</span>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+            <nav className="hidden md:flex items-center gap-1.5" aria-label="Main Navigation">
               {navItems.map((item) => {
                 const active = isLinkActive(item.href);
+                const Icon = item.icon;
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
+                    className={`inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition ${
                       active
-                        ? "bg-slate-800 text-white"
-                        : "text-slate-400 hover:bg-slate-800/60 hover:text-slate-200"
+                        ? "bg-accent text-accent-foreground shadow-xs font-semibold"
+                        : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"
                     }`}
                   >
+                    <Icon className="h-4 w-4" />
                     {item.name}
                   </Link>
                 );
@@ -107,59 +120,59 @@ export default function ProtectedLayout({
           {/* Right: User Info & Logout (Desktop) + Mobile Menu Toggle */}
           <div className="flex items-center gap-4">
             {user && (
-              <div className="hidden sm:block text-right">
-                <p className="text-sm font-medium text-slate-200">{user.fullName}</p>
-                <p className="text-xs text-slate-500">{user.email}</p>
+              <div className="hidden sm:flex items-center gap-3 border-r border-border pr-4">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted border border-border text-xs font-semibold text-muted-foreground">
+                  {user.fullName.charAt(0).toUpperCase()}
+                </div>
+                <div className="text-right">
+                  <p className="text-xs font-medium text-foreground">{user.fullName}</p>
+                  <p className="text-[11px] text-muted-foreground">{user.email}</p>
+                </div>
               </div>
             )}
 
             <button
               onClick={handleLogout}
-              className="hidden sm:inline-flex rounded-lg border border-slate-700 px-3.5 py-1.5 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-white"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition hover:bg-accent hover:text-accent-foreground"
             >
+              <LogOut className="h-3.5 w-3.5" />
               Logout
             </button>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="inline-flex md:hidden rounded-lg p-2 text-slate-400 hover:bg-slate-800 hover:text-white transition"
+              className="inline-flex md:hidden rounded-lg p-2 text-muted-foreground hover:bg-accent hover:text-accent-foreground transition"
               aria-label="Toggle mobile menu"
               aria-expanded={mobileMenuOpen}
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-              >
-                {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div className="border-t border-slate-800 bg-slate-900 px-4 py-3 md:hidden">
+          <div className="border-t border-border bg-card px-4 py-3 md:hidden space-y-3">
             <nav className="space-y-1" aria-label="Mobile Navigation">
               {navItems.map((item) => {
                 const active = isLinkActive(item.href);
+                const Icon = item.icon;
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`block rounded-lg px-3 py-2 text-base font-medium transition ${
+                    className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-base font-medium transition ${
                       active
-                        ? "bg-slate-800 text-white"
-                        : "text-slate-400 hover:bg-slate-800/60 hover:text-slate-200"
+                        ? "bg-accent text-accent-foreground font-semibold"
+                        : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"
                     }`}
                   >
+                    <Icon className="h-4 w-4" />
                     {item.name}
                   </Link>
                 );
@@ -167,15 +180,21 @@ export default function ProtectedLayout({
             </nav>
 
             {user && (
-              <div className="mt-4 border-t border-slate-800 pt-3 flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-slate-200">{user.fullName}</p>
-                  <p className="text-xs text-slate-500">{user.email}</p>
+              <div className="border-t border-border pt-3 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-muted border border-border text-xs font-semibold text-muted-foreground">
+                    {user.fullName.charAt(0).toUpperCase()}
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium text-foreground">{user.fullName}</p>
+                    <p className="text-[11px] text-muted-foreground">{user.email}</p>
+                  </div>
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="rounded-lg border border-slate-700 px-3 py-1.5 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-white"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition hover:bg-accent hover:text-accent-foreground"
                 >
+                  <LogOut className="h-3.5 w-3.5" />
                   Logout
                 </button>
               </div>

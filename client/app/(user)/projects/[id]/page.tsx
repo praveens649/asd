@@ -8,6 +8,20 @@ import { getToken } from "@/lib/auth";
 import { Project, ProjectStatus, Task, TaskPriority, TaskStatus } from "@/lib/types";
 import TaskModal from "@/components/TaskModal";
 import ConfirmModal from "@/components/ConfirmModal";
+import {
+  ArrowLeft,
+  Plus,
+  Search,
+  RotateCcw,
+  Pencil,
+  Trash2,
+  GripVertical,
+  Calendar,
+  AlertCircle,
+  CheckCircle2,
+  Clock,
+  PlayCircle,
+} from "lucide-react";
 
 interface ProjectDetailResponse {
   success: boolean;
@@ -280,7 +294,7 @@ export default function ProjectDetailsPage() {
       case "NOT_STARTED":
       default:
         return (
-          <span className="inline-flex items-center rounded-full bg-slate-700/50 px-3 py-1 text-xs font-medium text-slate-300 border border-slate-600/40">
+          <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground border border-border">
             Not Started
           </span>
         );
@@ -304,7 +318,7 @@ export default function ProjectDetailsPage() {
       case "LOW":
       default:
         return (
-          <span className="inline-flex items-center rounded-md bg-slate-700/50 px-2 py-0.5 text-xs font-medium text-slate-300 border border-slate-600/30">
+          <span className="inline-flex items-center rounded-md bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground border border-border">
             Low
           </span>
         );
@@ -314,11 +328,11 @@ export default function ProjectDetailsPage() {
   if (loading) {
     return (
       <div className="space-y-6">
-        <div className="h-6 w-32 animate-pulse rounded bg-slate-800" />
-        <div className="animate-pulse rounded-2xl border border-slate-800 bg-slate-900 p-8 space-y-4">
-          <div className="h-8 w-1/3 rounded bg-slate-800" />
-          <div className="h-4 w-2/3 rounded bg-slate-800" />
-          <div className="h-4 w-1/2 rounded bg-slate-800" />
+        <div className="h-6 w-32 animate-pulse rounded bg-muted" />
+        <div className="animate-pulse rounded-2xl border border-border bg-card p-8 space-y-4">
+          <div className="h-8 w-1/3 rounded bg-muted" />
+          <div className="h-4 w-2/3 rounded bg-muted" />
+          <div className="h-4 w-1/2 rounded bg-muted" />
         </div>
       </div>
     );
@@ -329,27 +343,23 @@ export default function ProjectDetailsPage() {
       <div className="space-y-6">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition"
+          className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition"
         >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-          </svg>
+          <ArrowLeft className="h-4 w-4" />
           Back to Projects
         </Link>
 
-        <div className="rounded-2xl border border-red-900 bg-red-950/40 p-8 text-center">
-          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-900/30 text-red-400">
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-            </svg>
+        <div className="rounded-2xl border border-destructive/50 bg-destructive/10 p-8 text-center">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-destructive/20 text-destructive">
+            <AlertCircle className="h-6 w-6" />
           </div>
-          <h3 className="mt-4 text-lg font-semibold text-white">Project Not Found</h3>
-          <p className="mt-2 text-sm text-slate-400">
+          <h3 className="mt-4 text-lg font-semibold text-destructive">Project Not Found</h3>
+          <p className="mt-2 text-sm text-destructive/80">
             {error || "The requested project could not be found or you don't have permission to view it."}
           </p>
           <button
             onClick={() => router.push("/projects")}
-            className="mt-6 inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500 transition"
+            className="mt-6 inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-sm transition"
           >
             Return to Projects
           </button>
@@ -366,26 +376,24 @@ export default function ProjectDetailsPage() {
       <div>
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition"
+          className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition"
         >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-          </svg>
+          <ArrowLeft className="h-4 w-4" />
           Back to Projects
         </Link>
       </div>
 
       {/* Project Overview Card */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 sm:p-8 shadow-xl">
+      <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-xl">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-3">
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
                 {project.name}
               </h1>
               {getProjectStatusBadge(project.status)}
             </div>
-            <p className="text-sm text-slate-400 max-w-3xl whitespace-pre-line">
+            <p className="text-sm text-muted-foreground max-w-3xl whitespace-pre-line">
               {project.description || "No description provided for this project."}
             </p>
           </div>
@@ -396,34 +404,32 @@ export default function ProjectDetailsPage() {
               setEditingTask(null);
               setIsTaskModalOpen(true);
             }}
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-medium text-white shadow-xs transition hover:bg-indigo-500 shrink-0"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition hover:bg-primary/90 shrink-0"
           >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
+            <Plus className="h-4 w-4" />
             Add Task
           </button>
         </div>
 
         {/* Project Metadata & Progress */}
-        <div className="mt-8 grid grid-cols-1 gap-4 border-t border-slate-800 pt-6 sm:grid-cols-3">
-          <div className="rounded-xl border border-slate-800/80 bg-slate-950/40 p-4">
-            <p className="text-xs font-medium text-slate-400">Timeline</p>
-            <p className="mt-1 text-sm font-semibold text-slate-200">
+        <div className="mt-8 grid grid-cols-1 gap-4 border-t border-border pt-6 sm:grid-cols-3">
+          <div className="rounded-xl border border-border bg-muted/30 p-4">
+            <p className="text-xs font-medium text-muted-foreground">Timeline</p>
+            <p className="mt-1 text-sm font-semibold text-foreground">
               {formatDate(project.startDate)} &rarr; {formatDate(project.endDate)}
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-800/80 bg-slate-950/40 p-4">
-            <p className="text-xs font-medium text-slate-400">Created On</p>
-            <p className="mt-1 text-sm font-semibold text-slate-200">
+          <div className="rounded-xl border border-border bg-muted/30 p-4">
+            <p className="text-xs font-medium text-muted-foreground">Created On</p>
+            <p className="mt-1 text-sm font-semibold text-foreground">
               {formatDate(project.createdAt)}
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-800/80 bg-slate-950/40 p-4">
-            <p className="text-xs font-medium text-slate-400">Tasks Progress</p>
-            <p className="mt-1 text-sm font-semibold text-slate-200">
+          <div className="rounded-xl border border-border bg-muted/30 p-4">
+            <p className="text-xs font-medium text-muted-foreground">Tasks Progress</p>
+            <p className="mt-1 text-sm font-semibold text-foreground">
               {completedTasksCount} of {tasks.length} completed
             </p>
           </div>
@@ -434,39 +440,27 @@ export default function ProjectDetailsPage() {
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-white">
+            <h2 className="text-xl font-bold tracking-tight text-foreground">
               Task Workspace
             </h2>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-muted-foreground">
               Drag and drop cards across columns to update their status instantly.
             </p>
           </div>
         </div>
 
         {/* Task Search & Filter Toolbar (Responsive Mobile/Desktop) */}
-        <div className="flex flex-col gap-3 rounded-xl border border-slate-800 bg-slate-900 p-4">
+        <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
             {/* Search Input */}
             <div className="relative flex-1">
-              <svg
-                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
-              </svg>
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
                 value={taskSearch}
                 onChange={(e) => setTaskSearch(e.target.value)}
                 placeholder="Search tasks by name..."
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 py-2 pl-9 pr-4 text-sm text-white placeholder-slate-500 outline-none transition focus:border-indigo-500"
+                className="w-full rounded-lg border border-input bg-background/50 py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring"
               />
             </div>
 
@@ -476,7 +470,7 @@ export default function ProjectDetailsPage() {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white outline-none transition focus:border-indigo-500"
+                  className="w-full rounded-lg border border-input bg-background/50 px-3 py-2 text-sm text-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring"
                 >
                   <option value="ALL">All Statuses</option>
                   <option value="PENDING">Pending</option>
@@ -490,7 +484,7 @@ export default function ProjectDetailsPage() {
                 <select
                   value={priorityFilter}
                   onChange={(e) => setPriorityFilter(e.target.value)}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white outline-none transition focus:border-indigo-500"
+                  className="w-full rounded-lg border border-input bg-background/50 px-3 py-2 text-sm text-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring"
                 >
                   <option value="ALL">All Priorities</option>
                   <option value="HIGH">High Priority</option>
@@ -503,7 +497,7 @@ export default function ProjectDetailsPage() {
               {hasActiveTaskFilters && (
                 <button
                   onClick={handleClearTaskFilters}
-                  className="inline-flex items-center justify-center rounded-lg border border-slate-700 bg-slate-800/80 px-3 py-2 text-xs font-medium text-slate-300 transition hover:bg-slate-800 hover:text-white shrink-0"
+                  className="inline-flex items-center justify-center rounded-lg border border-border bg-secondary/80 px-3 py-2 text-xs font-medium text-secondary-foreground transition hover:bg-secondary shrink-0"
                 >
                   Clear Filters
                 </button>
@@ -512,19 +506,19 @@ export default function ProjectDetailsPage() {
           </div>
 
           {tasksLoading && (
-            <p className="text-xs text-indigo-400 animate-pulse">Filtering tasks...</p>
+            <p className="text-xs text-primary animate-pulse">Filtering tasks...</p>
           )}
         </div>
 
         {/* No Filter Results Banner */}
         {tasks.length === 0 && hasActiveTaskFilters && !tasksLoading && (
-          <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-8 text-center">
-            <p className="text-sm font-medium text-slate-300">
+          <div className="rounded-xl border border-border bg-card/60 p-8 text-center">
+            <p className="text-sm font-medium text-foreground">
               No tasks match your current search and filter criteria.
             </p>
             <button
               onClick={handleClearTaskFilters}
-              className="mt-3 rounded-lg bg-slate-800 px-4 py-1.5 text-xs font-medium text-slate-200 hover:bg-slate-700 transition"
+              className="mt-3 rounded-lg bg-secondary px-4 py-1.5 text-xs font-medium text-secondary-foreground hover:bg-secondary/80 transition"
             >
               Clear Filters
             </button>
@@ -543,20 +537,20 @@ export default function ProjectDetailsPage() {
                 onDragOver={(e) => handleDragOver(e, column.id)}
                 onDragLeave={(e) => handleDragLeave(e, column.id)}
                 onDrop={(e) => handleDrop(e, column.id)}
-                className={`flex flex-col rounded-2xl border bg-slate-900/90 p-4 transition-all duration-150 min-h-[420px] ${
+                className={`flex flex-col rounded-2xl border bg-card/70 p-4 transition-all duration-150 min-h-[420px] ${
                   isColumnOver
-                    ? "border-indigo-500/80 bg-slate-900 ring-2 ring-indigo-500/30 shadow-lg shadow-indigo-950/50"
-                    : "border-slate-800/80"
+                    ? "border-primary ring-2 ring-primary/30 shadow-lg bg-card"
+                    : "border-border"
                 }`}
               >
                 {/* Column Header */}
-                <div className="flex items-center justify-between border-b border-slate-800/80 pb-3 mb-3">
+                <div className="flex items-center justify-between border-b border-border pb-3 mb-3">
                   <div className="flex items-center gap-2.5">
                     <span className={`h-2.5 w-2.5 rounded-full ${column.dotColor}`} />
-                    <h3 className="font-semibold text-white text-sm">
+                    <h3 className="font-semibold text-foreground text-sm">
                       {column.title}
                     </h3>
-                    <span className="rounded-full bg-slate-800 px-2 py-0.5 text-xs font-semibold text-slate-400">
+                    <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground">
                       {columnTasks.length}
                     </span>
                   </div>
@@ -567,29 +561,28 @@ export default function ProjectDetailsPage() {
                       setEditingTask(null);
                       setIsTaskModalOpen(true);
                     }}
-                    className="rounded-lg p-1 text-slate-400 hover:bg-slate-800 hover:text-white transition"
+                    className="rounded-lg p-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground transition"
                     title={`Add task to ${column.title}`}
                   >
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
+                    <Plus className="h-4 w-4" />
                   </button>
                 </div>
 
                 {/* Task Cards List */}
                 <div className="flex-1 space-y-3">
                   {columnTasks.length === 0 ? (
-                    <div className="flex h-32 flex-col items-center justify-center rounded-xl border border-dashed border-slate-800 p-4 text-center">
-                      <p className="text-xs text-slate-500">No {column.title.toLowerCase()} tasks</p>
+                    <div className="flex h-32 flex-col items-center justify-center rounded-xl border border-dashed border-border p-4 text-center">
+                      <p className="text-xs text-muted-foreground">No {column.title.toLowerCase()} tasks</p>
                       <button
                         onClick={() => {
                           setDefaultStatus(column.id);
                           setEditingTask(null);
                           setIsTaskModalOpen(true);
                         }}
-                        className="mt-2 text-xs font-medium text-indigo-400 hover:text-indigo-300"
+                        className="mt-2 text-xs font-medium text-primary hover:underline inline-flex items-center gap-1"
                       >
-                        + Create one
+                        <Plus className="h-3 w-3" />
+                        Create one
                       </button>
                     </div>
                   ) : (
@@ -602,18 +595,16 @@ export default function ProjectDetailsPage() {
                           draggable
                           onDragStart={(e) => handleDragStart(e, task.id)}
                           onDragEnd={handleDragEnd}
-                          className={`group rounded-xl border border-slate-800 bg-slate-950/70 p-4 shadow-sm transition-all hover:border-slate-700 hover:bg-slate-950 cursor-grab active:cursor-grabbing ${
-                            isBeingDragged ? "opacity-40 scale-[0.98] border-indigo-500/50" : ""
+                          className={`group rounded-xl border border-border bg-background/80 p-4 shadow-xs transition-all hover:border-border/80 hover:bg-background cursor-grab active:cursor-grabbing ${
+                            isBeingDragged ? "opacity-40 scale-[0.98] border-primary/50" : ""
                           }`}
                         >
                           <div className="flex items-start justify-between gap-2">
-                            <div className="flex items-center gap-2">
-                              <span className="text-slate-600 group-hover:text-slate-400 transition" title="Drag to reorder">
-                                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                                </svg>
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-muted-foreground/60 group-hover:text-muted-foreground transition cursor-grab" title="Drag to reorder">
+                                <GripVertical className="h-4 w-4" />
                               </span>
-                              <h4 className="text-sm font-semibold text-white line-clamp-1">
+                              <h4 className="text-sm font-semibold text-foreground line-clamp-1">
                                 {task.name}
                               </h4>
                             </div>
@@ -624,36 +615,33 @@ export default function ProjectDetailsPage() {
                                   setEditingTask(task);
                                   setIsTaskModalOpen(true);
                                 }}
-                                className="rounded p-1 text-slate-400 hover:bg-slate-800 hover:text-white transition"
+                                className="rounded p-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground transition"
                                 title="Edit Task"
                               >
-                                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-                                </svg>
+                                <Pencil className="h-3.5 w-3.5" />
                               </button>
 
                               <button
                                 onClick={() => setDeletingTask(task)}
-                                className="rounded p-1 text-slate-400 hover:bg-red-950/50 hover:text-red-300 transition"
+                                className="rounded p-1 text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition"
                                 title="Delete Task"
                               >
-                                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                </svg>
+                                <Trash2 className="h-3.5 w-3.5" />
                               </button>
                             </div>
                           </div>
 
                           {task.description && (
-                            <p className="mt-1.5 text-xs text-slate-400 line-clamp-2">
+                            <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2">
                               {task.description}
                             </p>
                           )}
 
-                          <div className="mt-3 flex items-center justify-between border-t border-slate-800/80 pt-2.5 text-xs">
+                          <div className="mt-3 flex items-center justify-between border-t border-border/80 pt-2.5 text-xs">
                             {getTaskPriorityBadge(task.priority)}
-                            <span className="text-slate-400">
-                              Due: <span className="text-slate-300 font-medium">{formatDate(task.dueDate)}</span>
+                            <span className="text-muted-foreground flex items-center gap-1">
+                              <Calendar className="h-3 w-3 text-muted-foreground/70" />
+                              Due: <span className="text-foreground font-medium">{formatDate(task.dueDate)}</span>
                             </span>
                           </div>
                         </div>

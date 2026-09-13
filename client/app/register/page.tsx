@@ -6,6 +6,7 @@ import Link from "next/link";
 import { isAuthenticated } from "@/lib/auth";
 import { User } from "@/lib/types";
 import { api } from "@/lib/api";
+import { FolderKanban, Loader2 } from "lucide-react";
 
 interface RegisterResponse {
   success: boolean;
@@ -37,7 +38,7 @@ export default function RegisterPage() {
 
   if (checkingAuth) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950 text-slate-400">
+      <div className="flex min-h-screen items-center justify-center bg-background text-muted-foreground">
         Checking authentication...
       </div>
     );
@@ -88,23 +89,26 @@ export default function RegisterPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 flex items-center justify-center px-4 py-8">
+    <main className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-md">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-white">Project Management</h1>
-          <p className="mt-2 text-slate-400">Create an account to get started</p>
+        <div className="mb-8 text-center flex flex-col items-center">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20 text-primary mb-3 shadow-inner">
+            <FolderKanban className="h-6 w-6" />
+          </div>
+          <h1 className="text-3xl font-bold text-foreground">Project Management</h1>
+          <p className="mt-2 text-muted-foreground">Create an account to get started</p>
         </div>
 
-        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-xl sm:p-8">
-          <h2 className="text-xl font-semibold text-white">Create Account</h2>
-          <p className="mt-1 text-sm text-slate-400">
+        <div className="rounded-2xl border border-border bg-card p-6 shadow-xl sm:p-8">
+          <h2 className="text-xl font-semibold text-foreground">Create Account</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
             Fill in your details to register.
           </p>
 
           {error && (
             <div
               role="alert"
-              className="mt-5 rounded-lg border border-red-900 bg-red-950/50 px-4 py-3 text-sm text-red-300"
+              className="mt-5 rounded-lg border border-destructive/50 bg-destructive/10 px-4 py-3 text-sm text-destructive"
             >
               {error}
             </div>
@@ -114,7 +118,7 @@ export default function RegisterPage() {
             <div>
               <label
                 htmlFor="fullName"
-                className="mb-2 block text-sm font-medium text-slate-300"
+                className="mb-2 block text-sm font-medium text-foreground"
               >
                 Full Name
               </label>
@@ -126,14 +130,14 @@ export default function RegisterPage() {
                 placeholder="John Doe"
                 required
                 disabled={loading}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-indigo-500 disabled:opacity-60"
+                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
               />
             </div>
 
             <div>
               <label
                 htmlFor="email"
-                className="mb-2 block text-sm font-medium text-slate-300"
+                className="mb-2 block text-sm font-medium text-foreground"
               >
                 Email
               </label>
@@ -145,14 +149,14 @@ export default function RegisterPage() {
                 placeholder="you@example.com"
                 required
                 disabled={loading}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-indigo-500 disabled:opacity-60"
+                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
               />
             </div>
 
             <div>
               <label
                 htmlFor="password"
-                className="mb-2 block text-sm font-medium text-slate-300"
+                className="mb-2 block text-sm font-medium text-foreground"
               >
                 Password
               </label>
@@ -165,14 +169,14 @@ export default function RegisterPage() {
                 required
                 minLength={8}
                 disabled={loading}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-indigo-500 disabled:opacity-60"
+                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
               />
             </div>
 
             <div>
               <label
                 htmlFor="confirmPassword"
-                className="mb-2 block text-sm font-medium text-slate-300"
+                className="mb-2 block text-sm font-medium text-foreground"
               >
                 Confirm Password
               </label>
@@ -185,24 +189,31 @@ export default function RegisterPage() {
                 required
                 minLength={8}
                 disabled={loading}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white outline-none transition placeholder:text-slate-600 focus:border-indigo-500 disabled:opacity-60"
+                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-indigo-600 px-4 py-3 font-medium text-white transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 font-medium text-primary-foreground transition hover:bg-primary/90 shadow-sm disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {loading ? "Creating account..." : "Create Account"}
+              {loading ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span>Creating account...</span>
+                </>
+              ) : (
+                "Create Account"
+              )}
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-slate-400">
+          <p className="mt-6 text-center text-sm text-muted-foreground">
             Already have an account?{" "}
             <Link
               href="/login"
-              className="font-medium text-indigo-400 hover:text-indigo-300"
+              className="font-medium text-primary hover:underline"
             >
               Sign in
             </Link>

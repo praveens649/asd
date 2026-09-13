@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { AlertTriangle, Loader2 } from "lucide-react";
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -44,31 +45,19 @@ export default function ConfirmModal({
       aria-describedby="confirm-modal-desc"
     >
       <div
-        className="w-full max-w-md rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl transition-all"
+        className="w-full max-w-md rounded-2xl border border-border bg-card p-6 shadow-2xl transition-all text-card-foreground"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start gap-4">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-950/60 border border-red-800/60 text-red-400">
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-              />
-            </svg>
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-destructive/10 border border-destructive/20 text-destructive">
+            <AlertTriangle className="h-5 w-5" />
           </div>
 
           <div className="flex-1">
-            <h3 id="confirm-modal-title" className="text-base font-semibold text-white">
+            <h3 id="confirm-modal-title" className="text-base font-semibold text-foreground">
               {title}
             </h3>
-            <p id="confirm-modal-desc" className="mt-1.5 text-sm text-slate-400">
+            <p id="confirm-modal-desc" className="mt-1.5 text-sm text-muted-foreground">
               {message}
             </p>
           </div>
@@ -77,18 +66,18 @@ export default function ConfirmModal({
         {error && (
           <div
             role="alert"
-            className="mt-4 rounded-lg border border-red-900 bg-red-950/50 px-3.5 py-2.5 text-xs text-red-300"
+            className="mt-4 rounded-xl border border-destructive/50 bg-destructive/10 px-3.5 py-2.5 text-xs text-destructive"
           >
             {error}
           </div>
         )}
 
-        <div className="mt-6 flex items-center justify-end gap-3 border-t border-slate-800 pt-4">
+        <div className="mt-6 flex items-center justify-end gap-3 border-t border-border pt-4">
           <button
             type="button"
             onClick={onClose}
             disabled={loading}
-            className="rounded-lg border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:text-white disabled:opacity-50"
+            className="rounded-xl border border-border bg-secondary/80 px-4 py-2 text-sm font-medium text-secondary-foreground transition hover:bg-secondary disabled:opacity-50"
           >
             Cancel
           </button>
@@ -96,16 +85,13 @@ export default function ConfirmModal({
             type="button"
             onClick={onConfirm}
             disabled={loading}
-            className="inline-flex items-center justify-center rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-500 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-destructive px-4 py-2 text-sm font-medium text-destructive-foreground transition hover:bg-destructive/90 disabled:opacity-60 disabled:cursor-not-allowed shadow-xs"
           >
             {loading ? (
-              <span className="flex items-center gap-2">
-                <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-                </svg>
-                Deleting...
-              </span>
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                <span>Deleting...</span>
+              </>
             ) : (
               confirmText
             )}
