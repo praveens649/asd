@@ -154,7 +154,7 @@ export default function TaskModal({
           <button
             onClick={onClose}
             disabled={loading}
-            className="rounded-lg p-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground transition disabled:opacity-50"
+            className="rounded-lg p-1 text-muted-foreground hover:bg-amber-500/10 hover:text-amber-300 transition disabled:opacity-50"
             aria-label="Close modal"
           >
             <X className="h-5 w-5" />
@@ -183,7 +183,7 @@ export default function TaskModal({
               placeholder="e.g. Implement authentication middleware"
               required
               disabled={loading}
-              className="w-full rounded-lg border border-input bg-background/50 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
+              className="w-full rounded-lg border border-input bg-background/50 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none transition hover:border-amber-500/50 focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40 disabled:opacity-60"
             />
           </div>
 
@@ -198,7 +198,7 @@ export default function TaskModal({
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Detailed acceptance criteria or notes..."
               disabled={loading}
-              className="w-full rounded-lg border border-input bg-background/50 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60 resize-none"
+              className="w-full rounded-lg border border-input bg-background/50 px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none transition hover:border-amber-500/50 focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40 disabled:opacity-60 resize-none"
             />
           </div>
 
@@ -212,7 +212,7 @@ export default function TaskModal({
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as TaskPriority)}
                 disabled={loading}
-                className="w-full rounded-lg border border-input bg-background/50 px-3.5 py-2.5 text-sm text-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
+                className="w-full rounded-lg border border-input bg-background/50 px-3.5 py-2.5 text-sm text-foreground outline-none transition hover:border-amber-500/50 focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40 disabled:opacity-60"
               >
                 <option value="LOW">Low</option>
                 <option value="MEDIUM">Medium</option>
@@ -229,7 +229,7 @@ export default function TaskModal({
                 value={status}
                 onChange={(e) => setStatus(e.target.value as TaskStatus)}
                 disabled={loading}
-                className="w-full rounded-lg border border-input bg-background/50 px-3.5 py-2.5 text-sm text-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
+                className="w-full rounded-lg border border-input bg-background/50 px-3.5 py-2.5 text-sm text-foreground outline-none transition hover:border-amber-500/50 focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40 disabled:opacity-60"
               >
                 <option value="PENDING">Pending</option>
                 <option value="IN_PROGRESS">In Progress</option>
@@ -249,7 +249,7 @@ export default function TaskModal({
               onChange={(e) => setDueDate(e.target.value)}
               required
               disabled={loading}
-              className="w-full rounded-lg border border-input bg-background/50 px-3.5 py-2.5 text-sm text-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
+              className="w-full rounded-lg border border-input bg-background/50 px-3.5 py-2.5 text-sm text-foreground outline-none transition hover:border-amber-500/50 focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40 disabled:opacity-60"
             />
           </div>
 
@@ -258,14 +258,14 @@ export default function TaskModal({
               type="button"
               onClick={onClose}
               disabled={loading}
-              className="rounded-lg border border-border bg-secondary/80 px-4 py-2 text-sm font-medium text-secondary-foreground hover:bg-secondary transition disabled:opacity-50"
+              className="rounded-lg border border-border bg-secondary/80 px-4 py-2 text-sm font-medium text-secondary-foreground hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-300 transition disabled:opacity-50"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-sm transition disabled:opacity-60 disabled:cursor-not-allowed"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-amber-400 hover:text-amber-950 hover:shadow-lg hover:shadow-amber-500/20 active:scale-[0.99] shadow-sm transition disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <>

@@ -343,7 +343,7 @@ export default function ProjectDetailsPage() {
       <div className="space-y-6">
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition"
+          className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-amber-400 transition"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Projects
@@ -359,7 +359,7 @@ export default function ProjectDetailsPage() {
           </p>
           <button
             onClick={() => router.push("/projects")}
-            className="mt-6 inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-sm transition"
+            className="mt-6 inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-amber-400 hover:text-amber-950 hover:shadow-lg hover:shadow-amber-500/20 active:scale-[0.99] shadow-sm transition"
           >
             Return to Projects
           </button>
@@ -376,7 +376,7 @@ export default function ProjectDetailsPage() {
       <div>
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition"
+          className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-amber-400 transition"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Projects
@@ -404,7 +404,7 @@ export default function ProjectDetailsPage() {
               setEditingTask(null);
               setIsTaskModalOpen(true);
             }}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition hover:bg-primary/90 shrink-0"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition hover:bg-amber-400 hover:text-amber-950 hover:shadow-lg hover:shadow-amber-500/20 active:scale-[0.99] shrink-0"
           >
             <Plus className="h-4 w-4" />
             Add Task
@@ -460,7 +460,7 @@ export default function ProjectDetailsPage() {
                 value={taskSearch}
                 onChange={(e) => setTaskSearch(e.target.value)}
                 placeholder="Search tasks by name..."
-                className="w-full rounded-lg border border-input bg-background/50 py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring"
+                className="w-full rounded-lg border border-input bg-background/50 py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground outline-none transition focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40"
               />
             </div>
 
@@ -470,7 +470,7 @@ export default function ProjectDetailsPage() {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="w-full rounded-lg border border-input bg-background/50 px-3 py-2 text-sm text-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring"
+                  className="w-full rounded-lg border border-input bg-background/50 px-3 py-2 text-sm text-foreground outline-none transition focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40"
                 >
                   <option value="ALL">All Statuses</option>
                   <option value="PENDING">Pending</option>
@@ -484,7 +484,7 @@ export default function ProjectDetailsPage() {
                 <select
                   value={priorityFilter}
                   onChange={(e) => setPriorityFilter(e.target.value)}
-                  className="w-full rounded-lg border border-input bg-background/50 px-3 py-2 text-sm text-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring"
+                  className="w-full rounded-lg border border-input bg-background/50 px-3 py-2 text-sm text-foreground outline-none transition focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40"
                 >
                   <option value="ALL">All Priorities</option>
                   <option value="HIGH">High Priority</option>
@@ -497,7 +497,7 @@ export default function ProjectDetailsPage() {
               {hasActiveTaskFilters && (
                 <button
                   onClick={handleClearTaskFilters}
-                  className="inline-flex items-center justify-center rounded-lg border border-border bg-secondary/80 px-3 py-2 text-xs font-medium text-secondary-foreground transition hover:bg-secondary shrink-0"
+                  className="inline-flex items-center justify-center rounded-lg border border-border bg-secondary/80 px-3 py-2 text-xs font-medium text-secondary-foreground transition hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-300 shrink-0"
                 >
                   Clear Filters
                 </button>
@@ -506,7 +506,7 @@ export default function ProjectDetailsPage() {
           </div>
 
           {tasksLoading && (
-            <p className="text-xs text-primary animate-pulse">Filtering tasks...</p>
+            <p className="text-xs text-amber-400 animate-pulse">Filtering tasks...</p>
           )}
         </div>
 
@@ -518,7 +518,7 @@ export default function ProjectDetailsPage() {
             </p>
             <button
               onClick={handleClearTaskFilters}
-              className="mt-3 rounded-lg bg-secondary px-4 py-1.5 text-xs font-medium text-secondary-foreground hover:bg-secondary/80 transition"
+              className="mt-3 rounded-lg bg-secondary px-4 py-1.5 text-xs font-medium text-secondary-foreground hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-300 transition"
             >
               Clear Filters
             </button>
@@ -539,7 +539,7 @@ export default function ProjectDetailsPage() {
                 onDrop={(e) => handleDrop(e, column.id)}
                 className={`flex flex-col rounded-2xl border bg-card/70 p-4 transition-all duration-150 min-h-[420px] ${
                   isColumnOver
-                    ? "border-primary ring-2 ring-primary/30 shadow-lg bg-card"
+                    ? "border-amber-400 ring-2 ring-amber-400/30 shadow-lg shadow-amber-950/40 bg-card"
                     : "border-border"
                 }`}
               >
@@ -561,7 +561,7 @@ export default function ProjectDetailsPage() {
                       setEditingTask(null);
                       setIsTaskModalOpen(true);
                     }}
-                    className="rounded-lg p-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground transition"
+                    className="rounded-lg p-1 text-muted-foreground hover:bg-amber-500/10 hover:text-amber-300 transition"
                     title={`Add task to ${column.title}`}
                   >
                     <Plus className="h-4 w-4" />
@@ -579,7 +579,7 @@ export default function ProjectDetailsPage() {
                           setEditingTask(null);
                           setIsTaskModalOpen(true);
                         }}
-                        className="mt-2 text-xs font-medium text-primary hover:underline inline-flex items-center gap-1"
+                        className="mt-2 text-xs font-medium text-amber-400 hover:text-amber-300 hover:underline inline-flex items-center gap-1"
                       >
                         <Plus className="h-3 w-3" />
                         Create one
@@ -595,13 +595,13 @@ export default function ProjectDetailsPage() {
                           draggable
                           onDragStart={(e) => handleDragStart(e, task.id)}
                           onDragEnd={handleDragEnd}
-                          className={`group rounded-xl border border-border bg-background/80 p-4 shadow-xs transition-all hover:border-border/80 hover:bg-background cursor-grab active:cursor-grabbing ${
-                            isBeingDragged ? "opacity-40 scale-[0.98] border-primary/50" : ""
+                          className={`group rounded-xl border border-border bg-background/80 p-4 shadow-xs transition-all hover:border-amber-500/40 hover:bg-background hover:shadow-md hover:shadow-amber-500/5 cursor-grab active:cursor-grabbing ${
+                            isBeingDragged ? "opacity-40 scale-[0.98] border-amber-400" : ""
                           }`}
                         >
                           <div className="flex items-start justify-between gap-2">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-muted-foreground/60 group-hover:text-muted-foreground transition cursor-grab" title="Drag to reorder">
+                              <span className="text-muted-foreground/60 group-hover:text-amber-400 transition cursor-grab" title="Drag to reorder">
                                 <GripVertical className="h-4 w-4" />
                               </span>
                               <h4 className="text-sm font-semibold text-foreground line-clamp-1">
@@ -615,7 +615,7 @@ export default function ProjectDetailsPage() {
                                   setEditingTask(task);
                                   setIsTaskModalOpen(true);
                                 }}
-                                className="rounded p-1 text-muted-foreground hover:bg-accent hover:text-accent-foreground transition"
+                                className="rounded p-1 text-muted-foreground hover:bg-amber-500/10 hover:text-amber-300 transition"
                                 title="Edit Task"
                               >
                                 <Pencil className="h-3.5 w-3.5" />

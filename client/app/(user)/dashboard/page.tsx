@@ -139,7 +139,7 @@ export default function DashboardPage() {
 
         <Link
           href="/projects"
-          className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition hover:bg-primary/90 self-start sm:self-auto"
+          className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition hover:bg-amber-400 hover:text-amber-950 hover:shadow-lg hover:shadow-amber-500/20 active:scale-[0.99] self-start sm:self-auto"
         >
           <span>View All Projects</span>
           <ArrowRight className="h-4 w-4" />
@@ -153,7 +153,7 @@ export default function DashboardPage() {
           return (
             <div
               key={card.title}
-              className="rounded-2xl border border-border bg-card p-5 shadow-xs transition hover:border-border/80 hover:bg-card/80"
+              className="rounded-2xl border border-border bg-card p-5 shadow-xs transition hover:border-amber-500/40 hover:shadow-lg hover:shadow-amber-500/5"
             >
               <div className="flex items-center justify-between">
                 <p className="text-xs font-medium text-muted-foreground">{card.title}</p>

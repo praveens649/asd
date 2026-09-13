@@ -174,7 +174,7 @@ export default function ProjectsPage() {
 
         <button
           onClick={() => setIsCreateModalOpen(true)}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition hover:bg-primary/90"
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm transition hover:bg-amber-400 hover:text-amber-950 hover:shadow-lg hover:shadow-amber-500/20 active:scale-[0.99]"
         >
           <Plus className="h-4 w-4" />
           New Project
@@ -192,7 +192,7 @@ export default function ProjectsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search projects by name..."
-              className="w-full rounded-lg border border-input bg-background/50 py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring"
+              className="w-full rounded-lg border border-input bg-background/50 py-2 pl-9 pr-4 text-sm text-foreground placeholder:text-muted-foreground outline-none transition focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40"
             />
           </div>
 
@@ -201,7 +201,7 @@ export default function ProjectsPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full rounded-lg border border-input bg-background/50 px-3 py-2 text-sm text-foreground outline-none transition focus:border-ring focus:ring-1 focus:ring-ring"
+              className="w-full rounded-lg border border-input bg-background/50 px-3 py-2 text-sm text-foreground outline-none transition focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40"
             >
               <option value="ALL">All Statuses</option>
               <option value="NOT_STARTED">Not Started</option>
@@ -215,7 +215,7 @@ export default function ProjectsPage() {
         {hasActiveFilters && (
           <button
             onClick={handleClearFilters}
-            className="inline-flex items-center justify-center rounded-lg border border-border bg-secondary/80 px-3 py-2 text-xs font-medium text-secondary-foreground transition hover:bg-secondary"
+            className="inline-flex items-center justify-center rounded-lg border border-border bg-secondary/80 px-3 py-2 text-xs font-medium text-secondary-foreground transition hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-300"
           >
             Clear Filters
           </button>
@@ -279,14 +279,14 @@ export default function ProjectsPage() {
           {hasActiveFilters ? (
             <button
               onClick={handleClearFilters}
-              className="mt-4 rounded-xl bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground hover:bg-secondary/80 transition"
+              className="mt-4 rounded-xl bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-300 transition"
             >
               Clear Filters
             </button>
           ) : (
             <button
               onClick={() => setIsCreateModalOpen(true)}
-              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 shadow-sm transition"
+              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-amber-400 hover:text-amber-950 hover:shadow-lg hover:shadow-amber-500/20 active:scale-[0.99] shadow-sm transition"
             >
               <Plus className="h-4 w-4" />
               Create your first project
@@ -301,13 +301,13 @@ export default function ProjectsPage() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group flex flex-col justify-between rounded-2xl border border-border bg-card p-5 transition hover:border-border/80 hover:bg-card/80 shadow-xs"
+              className="group flex flex-col justify-between rounded-2xl border border-border bg-card p-5 transition hover:border-amber-500/40 hover:shadow-lg hover:shadow-amber-500/5 shadow-xs"
             >
               <div>
                 <div className="flex items-start justify-between gap-3">
                   <Link
                     href={`/projects/${project.id}`}
-                    className="font-semibold text-foreground hover:text-primary transition text-lg line-clamp-1"
+                    className="font-semibold text-foreground hover:text-amber-400 transition text-lg line-clamp-1"
                   >
                     {project.name}
                   </Link>
@@ -344,7 +344,7 @@ export default function ProjectsPage() {
                     e.stopPropagation();
                     setEditingProject(project);
                   }}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/60 px-2.5 py-1 text-xs font-medium text-secondary-foreground transition hover:border-border hover:bg-secondary"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/60 px-2.5 py-1 text-xs font-medium text-secondary-foreground transition hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-300"
                 >
                   <Pencil className="h-3.5 w-3.5" />
                   Edit

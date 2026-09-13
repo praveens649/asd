@@ -88,8 +88,8 @@ export default function ProtectedLayout({
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           {/* Left: Brand + Desktop Navigation */}
           <div className="flex items-center gap-8">
-            <Link href="/dashboard" className="flex items-center gap-2.5 text-lg font-bold text-foreground tracking-tight hover:opacity-90 transition">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 border border-primary/20 text-primary">
+            <Link href="/dashboard" className="flex items-center gap-2.5 text-lg font-bold text-foreground tracking-tight hover:text-amber-400 transition">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 group-hover:scale-105 transition">
                 <FolderKanban className="h-5 w-5" />
               </div>
               <span>Project Management</span>
@@ -105,8 +105,8 @@ export default function ProtectedLayout({
                     href={item.href}
                     className={`inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition ${
                       active
-                        ? "bg-accent text-accent-foreground shadow-xs font-semibold"
-                        : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"
+                        ? "bg-amber-500/15 text-amber-300 border border-amber-500/30 shadow-xs font-semibold"
+                        : "text-muted-foreground hover:bg-amber-500/10 hover:text-amber-300 hover:border hover:border-amber-500/20"
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -133,7 +133,7 @@ export default function ProtectedLayout({
 
             <button
               onClick={handleLogout}
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition hover:bg-accent hover:text-accent-foreground"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-300"
             >
               <LogOut className="h-3.5 w-3.5" />
               Logout
@@ -142,7 +142,7 @@ export default function ProtectedLayout({
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="inline-flex md:hidden rounded-lg p-2 text-muted-foreground hover:bg-accent hover:text-accent-foreground transition"
+              className="inline-flex md:hidden rounded-lg p-2 text-muted-foreground hover:bg-amber-500/10 hover:text-amber-300 transition"
               aria-label="Toggle mobile menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -168,8 +168,8 @@ export default function ProtectedLayout({
                     href={item.href}
                     className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-base font-medium transition ${
                       active
-                        ? "bg-accent text-accent-foreground font-semibold"
-                        : "text-muted-foreground hover:bg-accent/60 hover:text-foreground"
+                        ? "bg-amber-500/15 text-amber-300 font-semibold border border-amber-500/30"
+                        : "text-muted-foreground hover:bg-amber-500/10 hover:text-amber-300"
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -192,7 +192,7 @@ export default function ProtectedLayout({
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition hover:bg-accent hover:text-accent-foreground"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition hover:border-amber-500/40 hover:bg-amber-500/10 hover:text-amber-300"
                 >
                   <LogOut className="h-3.5 w-3.5" />
                   Logout

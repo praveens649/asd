@@ -130,7 +130,7 @@ export default function RegisterPage() {
                 placeholder="John Doe"
                 required
                 disabled={loading}
-                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
+                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40 disabled:opacity-60"
               />
             </div>
 
@@ -149,7 +149,7 @@ export default function RegisterPage() {
                 placeholder="you@example.com"
                 required
                 disabled={loading}
-                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
+                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40 disabled:opacity-60"
               />
             </div>
 
@@ -169,7 +169,7 @@ export default function RegisterPage() {
                 required
                 minLength={8}
                 disabled={loading}
-                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
+                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40 disabled:opacity-60"
               />
             </div>
 
@@ -189,14 +189,14 @@ export default function RegisterPage() {
                 required
                 minLength={8}
                 disabled={loading}
-                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring disabled:opacity-60"
+                className="w-full rounded-lg border border-input bg-background/50 px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-amber-400 focus:ring-1 focus:ring-amber-400/40 disabled:opacity-60"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 font-medium text-primary-foreground transition hover:bg-primary/90 shadow-sm disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 font-medium text-primary-foreground transition hover:bg-amber-400 hover:text-amber-950 hover:shadow-md hover:shadow-amber-500/20 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? (
                 <>
@@ -213,7 +213,7 @@ export default function RegisterPage() {
             Already have an account?{" "}
             <Link
               href="/login"
-              className="font-medium text-primary hover:underline"
+              className="font-medium text-primary hover:text-amber-400 hover:underline transition-colors"
             >
               Sign in
             </Link>
