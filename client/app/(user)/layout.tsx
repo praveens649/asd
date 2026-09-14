@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getToken, getUser, logout } from "@/lib/auth";
 import { User } from "@/lib/types";
 import { api } from "@/lib/api";
+import Image from "next/image";
 import {
   LayoutDashboard,
   FolderKanban,
@@ -88,9 +89,15 @@ export default function ProtectedLayout({
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           {/* Left: Brand + Desktop Navigation */}
           <div className="flex items-center gap-8">
-            <Link href="/dashboard" className="flex items-center gap-2.5 text-lg font-bold text-foreground tracking-tight hover:text-amber-400 transition">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 group-hover:scale-105 transition">
-                <FolderKanban className="h-5 w-5" />
+            <Link href="/dashboard" className="flex items-center gap-2.5 text-lg font-bold text-foreground tracking-tight hover:text-amber-400 transition group">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl overflow-hidden border border-border bg-card shadow-xs group-hover:scale-105 transition">
+                <Image
+                  src="/icon.jpg"
+                  alt="Project Management Logo"
+                  width={36}
+                  height={36}
+                  className="h-full w-full object-cover"
+                />
               </div>
               <span>Project Management</span>
             </Link>

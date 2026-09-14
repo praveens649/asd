@@ -6,7 +6,8 @@ import Link from "next/link";
 import { isAuthenticated, saveAuth } from "@/lib/auth";
 import { User } from "@/lib/types";
 import { api } from "@/lib/api";
-import { FolderKanban, Loader2 } from "lucide-react";
+import Image from "next/image";
+import { Loader2 } from "lucide-react";
 
 interface LoginResponse {
   success: boolean;
@@ -84,8 +85,15 @@ export default function LoginPage() {
     <main className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center flex flex-col items-center">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20 text-primary mb-3 shadow-inner">
-            <FolderKanban className="h-6 w-6" />
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl overflow-hidden border border-border bg-card mb-3 shadow-md">
+            <Image
+              src="/icon.jpg"
+              alt="Project Management Logo"
+              width={56}
+              height={56}
+              className="h-full w-full object-cover"
+              priority
+            />
           </div>
           <h1 className="text-3xl font-bold text-foreground">
             Project Management
