@@ -48,10 +48,20 @@ export interface Task {
   };
 }
 
+export interface MonthlyProjectData {
+  month: string;
+  projects: number;
+}
+
 export interface DashboardStats {
   totalProjects: number;
   totalTasks: number;
   completedTasks: number;
   pendingTasks: number;
   projectsInProgress: number;
+  inProgressTasks?: number;
+  highPriorityTasks?: number;
+  mediumPriorityTasks?: number;
+  lowPriorityTasks?: number;
+  monthlyProjects?: MonthlyProjectData[];
 }

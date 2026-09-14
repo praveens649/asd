@@ -14,6 +14,7 @@ import {
   ArrowRight,
   Plus,
 } from "lucide-react";
+import { ChartRadarDefault, ChartRadialText } from "@/components/dashboard";
 
 interface DashboardResponse {
   success: boolean;
@@ -68,6 +69,10 @@ export default function DashboardPage() {
               className="h-32 animate-pulse rounded-2xl border border-border bg-card p-5"
             />
           ))}
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="h-[360px] animate-pulse rounded-2xl border border-border bg-card p-6" />
+          <div className="h-[360px] animate-pulse rounded-2xl border border-border bg-card p-6" />
         </div>
       </div>
     );
@@ -170,6 +175,12 @@ export default function DashboardPage() {
             </div>
           );
         })}
+      </div>
+
+      {/* Interactive Charts Grid */}
+      <div className="grid gap-6 md:grid-cols-2">
+        <ChartRadarDefault stats={stats} />
+        <ChartRadialText stats={stats} />
       </div>
     </div>
   );
