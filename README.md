@@ -2,6 +2,14 @@
 
 A full-stack Project Management System. The application allows authenticated users to create and manage projects, organize tasks within projects, track progress, and view dashboard statistics.
 
+## Live Demo
+
+Frontend: https://project-management-system-bice-theta.vercel.app
+
+Backend API: https://project-management-api-h589.onrender.com
+
+Database: Neon PostgreSQL
+
 ## Features
 
 ### Authentication
