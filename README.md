@@ -527,5 +527,5 @@ npm start
 
 
 
-##            ❤️MADE WITH LOVE AND PASSION BY  
+##            ❤️MADE WITH LOVE AND PASSION  
 
